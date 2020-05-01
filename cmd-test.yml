@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cmd-test
+  labels:
+    name: cmd-test
+spec:
+  containers:
+  - name: cmd-test
+    image: nginx:1.16.1
+    command: ["/bin/sh","-c", "env"]
+    env:
+      - name: SPEC_LEVEL_KEY
+        valueFrom:
+          configMapKeyRef:
+            name: kube-flannel-cfg
+            key: my-key

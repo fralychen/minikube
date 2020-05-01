@@ -1,0 +1,353 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  data:
+    Corefile: |
+      .:53 {
+          errors
+          health {
+             lameduck 5s
+          }
+          ready
+          kubernetes cluster.local in-addr.arpa ip6.arpa {
+             pods insecure
+             fallthrough in-addr.arpa ip6.arpa
+             ttl 30
+          }
+          prometheus :9153
+          forward . /etc/resolv.conf
+          cache 30
+          loop
+          reload
+          loadbalance
+      }
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: "2020-04-17T16:04:55Z"
+    managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:data:
+          .: {}
+          f:Corefile: {}
+      manager: kubeadm
+      operation: Update
+      time: "2020-04-17T16:04:55Z"
+    name: coredns
+    namespace: kube-system
+    resourceVersion: "186"
+    selfLink: /api/v1/namespaces/kube-system/configmaps/coredns
+    uid: 5283583e-7c4f-4347-a384-1ab7e4b94343
+- apiVersion: v1
+  data:
+    client-ca-file: |
+      -----BEGIN CERTIFICATE-----
+      MIIC5zCCAc+gAwIBAgIBATANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwptaW5p
+      a3ViZUNBMB4XDTIwMDQxNjA4MDIyNloXDTMwMDQxNTA4MDIyNlowFTETMBEGA1UE
+      AxMKbWluaWt1YmVDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANdx
+      CLOTGMsAOBYyFslg3BIlTW1CtVghco6ON0GFQWaoqxSL4Hz+TIaKVlgy+MimkRt+
+      ndEg+FGkRMh8qAsvY22P72UkYfw0zsHSjdQH19v7y6AgymchnPoRYr/VyVd6r6rs
+      MNoU38TIsGhfcpSROs4xI2SD/rRz9dLu7kMDCJOaxvCFZ+8aRXuzo0A1xKnHAIvl
+      crvOc3bpc7jhSa6He7itC+pWya7DkcLvjPxAHTz9CxwP7gz7rfnXmzXvmhw8u4zg
+      FpuF/gSPI5R9q6qYpCNDYsg+ImSZvv6RiKafONmlKWm5TUMmWJ3Ntrsc48ibK6AQ
+      ke3e5IX5/XhVIXtbxY0CAwEAAaNCMEAwDgYDVR0PAQH/BAQDAgKkMB0GA1UdJQQW
+      MBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3
+      DQEBCwUAA4IBAQAsLF4+ihbkyBWIWHF4pEFsRZ6t7GmhUj8xAguSPnXkQI/oeAes
+      KraBrWXY1SoHAKeZu3UnrqxsJ9VqstQR8GV2L73DCNzc0jMtbHTxR6x47vgiDx1s
+      g0eraWrN9ZTl52ewCk2I4TZKpkJIf7mwHc7VNgbsqP0sPeOdiX1PSl3xKkTYHK1h
+      D58YUlSA0Dn0DCZ2DWmxT5Q7kDRfX0XJgnJqpmUJYm3kBGHzzK9O8IMKsih0RZis
+      HuIC7iGNz4iazchKtQTJXSv8qiEUeYo7o6O7aHjbasZk9teUxyU8SGH1l3/lfFOn
+      riA37iYW7hyoNhuhGFQ7K8a2WvBWo6tt6WU8
+      -----END CERTIFICATE-----
+    requestheader-allowed-names: '["front-proxy-client"]'
+    requestheader-client-ca-file: |
+      -----BEGIN CERTIFICATE-----
+      MIIC0DCCAbigAwIBAgIBADANBgkqhkiG9w0BAQsFADAZMRcwFQYDVQQDEw5mcm9u
+      dC1wcm94eS1jYTAeFw0yMDA0MTcxNjA0MzVaFw0zMDA0MTUxNjA0MzVaMBkxFzAV
+      BgNVBAMTDmZyb250LXByb3h5LWNhMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB
+      CgKCAQEAyiVAOOhVWAUTl+mpNjGrPPS3z7K7F414CXanI+LcUWg+Q9xqn4lZVLkF
+      Lft4ZGmFZfbd/5xbpi7e1Fbtgy2hLXfrCxEKbkqs65XxzWq7B+j7EInD4pz2ouzH
+      b41Wg/my/I/m421q4+Y0YmqvGkzjUFOMzMK25hObTB7bMwPdKsCMdmmm2eJ8P7gB
+      b+6cAwJ8MzR5pnSvLm2FqgotvxrMJEr4QFnef+jAy+QaPQnVHsx8CWV3OfT/kJoD
+      HpI+e1xuLW0k1lLo4ZRI1/m4UjbfmO0Zo6A+Xvu6WmwTxXE2qR7Z6YsniilbEJWf
+      JCddyx2LKB4G4S2vJO3IyHFR+AdrrwIDAQABoyMwITAOBgNVHQ8BAf8EBAMCAqQw
+      DwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAZLPSj7xkOZctSMsk
+      JVLzrPqDW6f9ULtV9eUBlqCj1ywnNakA26bd+FGauQMLm/kmvLoFcxDbDUhKvF4w
+      alLY/19Bh9JBkiEssQTJuKK9a6CcEREGWDWqdcZh0UMt3uw5i4+lVcFbydBXk0BX
+      7OQOw4oGbIJ3i62sRYKw9pPPXhs1Y0lhg6ilmO6zoz9P63nCjcZEOuX0OveXd1qJ
+      MBR7AaFu8Xa8FpvKIredrdnz2JC8MOyEpQ+NoZqCV6WzQzjxf2QmqXvdcg2vy39R
+      XsGixyfVvaLe5fQwpP0Us5joyADti43tHchrosdeTz8s696WRg3jeNOkcNmW9aaV
+      nQnpmw==
+      -----END CERTIFICATE-----
+    requestheader-extra-headers-prefix: '["X-Remote-Extra-"]'
+    requestheader-group-headers: '["X-Remote-Group"]'
+    requestheader-username-headers: '["X-Remote-User"]'
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: "2020-04-17T16:04:52Z"
+    managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:data:
+          .: {}
+          f:client-ca-file: {}
+          f:requestheader-allowed-names: {}
+          f:requestheader-client-ca-file: {}
+          f:requestheader-extra-headers-prefix: {}
+          f:requestheader-group-headers: {}
+          f:requestheader-username-headers: {}
+      manager: kube-apiserver
+      operation: Update
+      time: "2020-04-17T16:04:52Z"
+    name: extension-apiserver-authentication
+    namespace: kube-system
+    resourceVersion: "27"
+    selfLink: /api/v1/namespaces/kube-system/configmaps/extension-apiserver-authentication
+    uid: 7bbf3e73-ff85-4e39-85fe-1fc09f7c2f47
+- apiVersion: v1
+  data:
+    my-key: my-value
+  kind: ConfigMap
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","data":{"my-key":"my-value"},"kind":"ConfigMap","metadata":{"annotations":{},"labels":{"app":"flannel","tier":"node"},"name":"kube-flannel-cfg","namespace":"kube-system"}}
+    creationTimestamp: "2020-04-19T19:31:35Z"
+    labels:
+      app: flannel
+      tier: node
+    managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:data:
+          .: {}
+          f:my-key: {}
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:kubectl.kubernetes.io/last-applied-configuration: {}
+          f:labels:
+            .: {}
+            f:app: {}
+            f:tier: {}
+      manager: kubectl
+      operation: Update
+      time: "2020-04-19T19:31:35Z"
+    name: kube-flannel-cfg
+    namespace: kube-system
+    resourceVersion: "305973"
+    selfLink: /api/v1/namespaces/kube-system/configmaps/kube-flannel-cfg
+    uid: b0a986db-4a87-4f9b-894b-dfb429404f9a
+- apiVersion: v1
+  data:
+    config.conf: |-
+      apiVersion: kubeproxy.config.k8s.io/v1alpha1
+      bindAddress: 0.0.0.0
+      clientConnection:
+        acceptContentTypes: ""
+        burst: 0
+        contentType: ""
+        kubeconfig: /var/lib/kube-proxy/kubeconfig.conf
+        qps: 0
+      clusterCIDR: ""
+      configSyncPeriod: 0s
+      conntrack:
+        maxPerCore: null
+        min: null
+        tcpCloseWaitTimeout: null
+        tcpEstablishedTimeout: null
+      detectLocalMode: ""
+      enableProfiling: false
+      healthzBindAddress: ""
+      hostnameOverride: ""
+      iptables:
+        masqueradeAll: false
+        masqueradeBit: null
+        minSyncPeriod: 0s
+        syncPeriod: 0s
+      ipvs:
+        excludeCIDRs: null
+        minSyncPeriod: 0s
+        scheduler: ""
+        strictARP: false
+        syncPeriod: 0s
+        tcpFinTimeout: 0s
+        tcpTimeout: 0s
+        udpTimeout: 0s
+      kind: KubeProxyConfiguration
+      metricsBindAddress: 192.168.99.105:10249
+      mode: ""
+      nodePortAddresses: null
+      oomScoreAdj: null
+      portRange: ""
+      showHiddenMetricsForVersion: ""
+      udpIdleTimeout: 0s
+      winkernel:
+        enableDSR: false
+        networkName: ""
+        sourceVip: ""
+    kubeconfig.conf: |-
+      apiVersion: v1
+      kind: Config
+      clusters:
+      - cluster:
+          certificate-authority: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+          server: https://192.168.99.105:8443
+        name: default
+      contexts:
+      - context:
+          cluster: default
+          namespace: default
+          user: default
+        name: default
+      current-context: default
+      users:
+      - name: default
+        user:
+          tokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: "2020-04-17T16:04:55Z"
+    labels:
+      app: kube-proxy
+    managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:data:
+          .: {}
+          f:config.conf: {}
+          f:kubeconfig.conf: {}
+        f:metadata:
+          f:labels:
+            .: {}
+            f:app: {}
+      manager: kubeadm
+      operation: Update
+      time: "2020-04-17T16:04:55Z"
+    name: kube-proxy
+    namespace: kube-system
+    resourceVersion: "194"
+    selfLink: /api/v1/namespaces/kube-system/configmaps/kube-proxy
+    uid: 0eee56cf-420d-4603-8194-0634327b64aa
+- apiVersion: v1
+  data:
+    ClusterConfiguration: |
+      apiServer:
+        certSANs:
+        - 127.0.0.1
+        - localhost
+        - 192.168.99.105
+        extraArgs:
+          authorization-mode: Node,RBAC
+          enable-admission-plugins: NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,DefaultTolerationSeconds,NodeRestriction,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,ResourceQuota
+        timeoutForControlPlane: 4m0s
+      apiVersion: kubeadm.k8s.io/v1beta2
+      certificatesDir: /var/lib/minikube/certs
+      clusterName: mk
+      controlPlaneEndpoint: 192.168.99.105:8443
+      controllerManager: {}
+      dns:
+        type: CoreDNS
+      etcd:
+        local:
+          dataDir: /var/lib/minikube/etcd
+      imageRepository: k8s.gcr.io
+      kind: ClusterConfiguration
+      kubernetesVersion: v1.18.0
+      networking:
+        dnsDomain: cluster.local
+        serviceSubnet: 10.96.0.0/12
+      scheduler: {}
+    ClusterStatus: |
+      apiEndpoints:
+        minikube:
+          advertiseAddress: 192.168.99.105
+          bindPort: 8443
+      apiVersion: kubeadm.k8s.io/v1beta2
+      kind: ClusterStatus
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: "2020-04-17T16:04:54Z"
+    managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:data:
+          .: {}
+          f:ClusterConfiguration: {}
+          f:ClusterStatus: {}
+      manager: kubeadm
+      operation: Update
+      time: "2020-04-17T16:04:54Z"
+    name: kubeadm-config
+    namespace: kube-system
+    resourceVersion: "152"
+    selfLink: /api/v1/namespaces/kube-system/configmaps/kubeadm-config
+    uid: 9ddc3c25-8026-4827-aa57-fbf5f22fbb40
+- apiVersion: v1
+  data:
+    kubelet: |
+      apiVersion: kubelet.config.k8s.io/v1beta1
+      authentication:
+        anonymous:
+          enabled: false
+        webhook:
+          cacheTTL: 0s
+          enabled: true
+        x509:
+          clientCAFile: /var/lib/minikube/certs/ca.crt
+      authorization:
+        mode: Webhook
+        webhook:
+          cacheAuthorizedTTL: 0s
+          cacheUnauthorizedTTL: 0s
+      clusterDNS:
+      - 10.96.0.10
+      clusterDomain: cluster.local
+      cpuManagerReconcilePeriod: 0s
+      evictionHard:
+        imagefs.available: 0%
+        nodefs.available: 0%
+        nodefs.inodesFree: 0%
+      evictionPressureTransitionPeriod: 0s
+      fileCheckFrequency: 0s
+      healthzBindAddress: 127.0.0.1
+      healthzPort: 10248
+      httpCheckFrequency: 0s
+      imageGCHighThresholdPercent: 100
+      imageMinimumGCAge: 0s
+      kind: KubeletConfiguration
+      nodeStatusReportFrequency: 0s
+      nodeStatusUpdateFrequency: 0s
+      rotateCertificates: true
+      runtimeRequestTimeout: 0s
+      staticPodPath: /etc/kubernetes/manifests
+      streamingConnectionIdleTimeout: 0s
+      syncFrequency: 0s
+      volumeStatsAggPeriod: 0s
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: "2020-04-17T16:04:54Z"
+    managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:data:
+          .: {}
+          f:kubelet: {}
+      manager: kubeadm
+      operation: Update
+      time: "2020-04-17T16:04:54Z"
+    name: kubelet-config-1.18
+    namespace: kube-system
+    resourceVersion: "155"
+    selfLink: /api/v1/namespaces/kube-system/configmaps/kubelet-config-1.18
+    uid: 77ba2e4b-f6c4-4dc1-af93-27e7c5cfba55
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
